@@ -1,4 +1,4 @@
-package  com.idfcbank.employee.controller;
+package com.idfcbank.employee.service;
 
 import com.idfcbank.employee.model.Employee;
 

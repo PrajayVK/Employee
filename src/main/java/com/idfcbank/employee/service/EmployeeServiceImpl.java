@@ -1,5 +1,4 @@
 package com.idfcbank.employee.service;
-import com.idfcbank.employee.controller.EmployeeService;
 import com.idfcbank.employee.model.Employee;
 import com.idfcbank.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,8 @@ import java.util.Optional;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeRepository employeeRepository;
-
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+    EmployeeRepository employeeRepository;
 
     @Override
     public Employee saveEmployee(Employee employee) {
