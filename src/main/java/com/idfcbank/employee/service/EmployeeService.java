@@ -11,4 +11,6 @@ public interface EmployeeService {
     Optional<Employee> getEmployeeById(Long employeeId);
     Employee updateEmployee(Long employeeId, Employee employee);
     void deleteEmployee(Long employeeId);
+    List<Employee> getEmployeesByTeam(String team);
+    List<Employee> getEmployeesByRole(String role);
 }

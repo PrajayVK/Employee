@@ -27,8 +27,8 @@ class EmployeeServiceImplTest {
 
     @Test
     void saveEmployee() {
-        Employee newEmployee = new Employee(null,"Prajay","V K","prajay827742@gmail.com");
-        when(employeeRepository.save(newEmployee)).thenReturn(new Employee(1L,"Prajay","V K","prajay827742@gmail.com"));
+        Employee newEmployee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
+        when(employeeRepository.save(newEmployee)).thenReturn(new Employee(1L,"Prajay","V K","prajay827742@gmail.com","developer", "ods"));
         Employee savedEmployee = employeeService.saveEmployee(newEmployee);
         assertNotNull(savedEmployee, "The saved employee should not be null");
         assertNotNull(savedEmployee.getEmployeeId(), "The saved employee should have an ID");
@@ -37,8 +37,8 @@ class EmployeeServiceImplTest {
 
     @Test
     void getAllEmployees() {
-        Employee newEmployee = new Employee(null,"Prajay","V K","prajay827742@gmail.com");
-        Employee newEmployee2 = new Employee(null,"Prajay2","V K","prajay2827742@gmail.com");
+        Employee newEmployee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
+        Employee newEmployee2 = new Employee(null, "Prajay2", "V K", "prajay@idfcbank.com", "developer", "ods");
         when(employeeRepository.findAll()).thenReturn(List.of(newEmployee, newEmployee2));
         List<Employee> employeeList = employeeService.getAllEmployees();
         assertEquals(2,employeeList.size(),"Number of employees in the list should be two");
@@ -46,7 +46,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void getEmployeeById() {
-        Optional<Employee> optionalEmployee = Optional.of(new Employee(1L, "Prajay", "Developer", "IT"));
+        Optional<Employee> optionalEmployee = Optional.of(new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods"));
         when(employeeRepository.findById(1L)).thenReturn(optionalEmployee);
 
         Optional<Employee> foundEmployee = employeeService.getEmployeeById(1L);

@@ -1,4 +1,5 @@
 package com.idfcbank.employee.service;
+
 import com.idfcbank.employee.exception.EmailAlreadyExistsException;
 import com.idfcbank.employee.model.Employee;
 import com.idfcbank.employee.repository.EmployeeRepository;
@@ -39,9 +40,21 @@ public class EmployeeServiceImpl implements EmployeeService {
                     existingEmployee.setFirstName(employee.getFirstName());
                     existingEmployee.setLastName(employee.getLastName());
                     existingEmployee.setEmail(employee.getEmail());
+                    existingEmployee.setRole(employee.getRole()); // Update role
+                    existingEmployee.setTeam(employee.getTeam()); // Update team
                     return employeeRepository.save(existingEmployee);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Employee not found with id " + employeeId));
+    }
+
+    @Override
+    public List<Employee> getEmployeesByTeam(String team) {
+        return employeeRepository.findByTeam(team);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByRole(String role) {
+        return employeeRepository.findByRole(role);
     }
 
     @Override
@@ -49,5 +62,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(employeeId);
     }
 }
+
 
 

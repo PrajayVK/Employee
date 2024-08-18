@@ -29,7 +29,7 @@ class EmployeeControllerTest {
 
     @Test
     void createEmployee() {
-        Employee newEmployee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com");
+        Employee newEmployee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
         when(employeeService.saveEmployee(newEmployee)).thenReturn(newEmployee);
 
         ResponseEntity<Employee> responseEntity = employeeController.createEmployee(newEmployee);
@@ -41,8 +41,8 @@ class EmployeeControllerTest {
 
     @Test
     void getAllEmployees() {
-        Employee newEmployee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com");
-        Employee newEmployee2 = new Employee(null, "Prajay2", "V K", "prajay2@idfcbank.com");
+        Employee newEmployee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
+        Employee newEmployee2 = new Employee(null, "Prajay2", "V K", "prajay2@idfcbank.com", "developer", "ods");
         when(employeeService.getAllEmployees()).thenReturn(List.of(newEmployee,newEmployee2));
 
         ResponseEntity<List<Employee>> responseEntity = employeeController.getAllEmployees();
@@ -54,7 +54,7 @@ class EmployeeControllerTest {
     @Test
     void getEmployeeById() {
         Long employeeId =1L;
-        Employee employee = new Employee(null,"Prajay","V K","prajay827742@gnail.com");
+        Employee employee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
         employee.setEmployeeId(employeeId);
         when(employeeService.getEmployeeById(employeeId)).thenReturn(Optional.of(employee));
 
@@ -70,7 +70,7 @@ class EmployeeControllerTest {
     @Test
     void testUpdateEmployee() {
         Long employeeId = 1L;
-        Employee employee = new Employee(null, "Prajay", "V K", "prajay827742@gmail.com");
+        Employee employee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
         employee.setEmployeeId(employeeId);
         when(employeeService.updateEmployee(employeeId, employee)).thenReturn(employee);
 
@@ -87,7 +87,7 @@ class EmployeeControllerTest {
     void testUpdateEmployee_NotFound() {
 
         Long employeeId = 1L;
-        Employee employee = new Employee(null,"Prajay","V k","prajay827742@gmail.com");
+        Employee employee = new Employee(null, "Prajay", "V K", "prajay@idfcbank.com", "developer", "ods");
         employee.setEmployeeId(employeeId);
         when(employeeService.updateEmployee(employeeId, employee)).thenThrow(new IllegalArgumentException());
 

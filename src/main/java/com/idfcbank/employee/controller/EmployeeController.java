@@ -53,6 +53,18 @@ public class EmployeeController {
         return ResponseUtil.noContent();
     }
 
+    @GetMapping("/team/{team}")
+    public ResponseEntity<List<Employee>> getEmployeesByTeam(@PathVariable String team) {
+        List<Employee> employees = employeeService.getEmployeesByTeam(team);
+        return ResponseEntity.ok(employees);
+    }
+
+    @GetMapping("/role/{role}")
+    public ResponseEntity<List<Employee>> getEmployeesByRole(@PathVariable String role) {
+        List<Employee> employees = employeeService.getEmployeesByRole(role);
+        return ResponseEntity.ok(employees);
+    }
+
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<String> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
