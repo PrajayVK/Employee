@@ -31,7 +31,7 @@ class EmployeeServiceImplTest {
         when(employeeRepository.save(newEmployee)).thenReturn(new Employee(1L,"Prajay","V K","prajay827742@gmail.com"));
         Employee savedEmployee = employeeService.saveEmployee(newEmployee);
         assertNotNull(savedEmployee, "The saved employee should not be null");
-        assertNotNull(savedEmployee.getId(), "The saved employee should have an ID");
+        assertNotNull(savedEmployee.getEmployeeId(), "The saved employee should have an ID");
         assertEquals("Prajay", savedEmployee.getFirstName(), "The name of the saved employee should match");
     }
 

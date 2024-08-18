@@ -55,7 +55,7 @@ class EmployeeControllerTest {
     void getEmployeeById() {
         Long employeeId =1L;
         Employee employee = new Employee(null,"Prajay","V K","prajay827742@gnail.com");
-        employee.setId(employeeId);
+        employee.setEmployeeId(employeeId);
         when(employeeService.getEmployeeById(employeeId)).thenReturn(Optional.of(employee));
 
 
@@ -71,7 +71,7 @@ class EmployeeControllerTest {
     void testUpdateEmployee() {
         Long employeeId = 1L;
         Employee employee = new Employee(null, "Prajay", "V K", "prajay827742@gmail.com");
-        employee.setId(employeeId);
+        employee.setEmployeeId(employeeId);
         when(employeeService.updateEmployee(employeeId, employee)).thenReturn(employee);
 
 
@@ -88,7 +88,7 @@ class EmployeeControllerTest {
 
         Long employeeId = 1L;
         Employee employee = new Employee(null,"Prajay","V k","prajay827742@gmail.com");
-        employee.setId(employeeId);
+        employee.setEmployeeId(employeeId);
         when(employeeService.updateEmployee(employeeId, employee)).thenThrow(new IllegalArgumentException());
 
 

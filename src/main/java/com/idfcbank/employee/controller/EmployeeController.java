@@ -1,6 +1,7 @@
 package com.idfcbank.employee.controller;
 
-import com.idfcbank.employee.Utility.ResponseUtil;
+import com.idfcbank.employee.exception.EmailAlreadyExistsException;
+import com.idfcbank.employee.utility.ResponseUtil;
 import com.idfcbank.employee.model.Employee;
 import com.idfcbank.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,25 +31,30 @@ public class EmployeeController {
         return ResponseUtil.ok(employees);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Optional<Employee> employee = employeeService.getEmployeeById(id);
+    @GetMapping("/{employeeId}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long employeeId) {
+        Optional<Employee> employee = employeeService.getEmployeeById(employeeId);
         return employee.map(ResponseUtil::ok).orElse(ResponseUtil.notFound());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+    @PutMapping("/{employeeId}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long employeeId, @RequestBody Employee employee) {
         try {
-            Employee updatedEmployee = employeeService.updateEmployee(id, employee);
+            Employee updatedEmployee = employeeService.updateEmployee(employeeId, employee);
             return ResponseUtil.ok(updatedEmployee);
         } catch (IllegalArgumentException e) {
             return ResponseUtil.notFound();
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteEmployee(id);
+    @DeleteMapping("/{employeeId}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long employeeId) {
+        employeeService.deleteEmployee(employeeId);
         return ResponseUtil.noContent();
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<String> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 }

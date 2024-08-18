@@ -1,4 +1,4 @@
-package com.idfcbank.employee.Utility;
+package com.idfcbank.employee.utility;
 
 import com.idfcbank.employee.model.Employee;
 import org.springframework.http.HttpStatus;
